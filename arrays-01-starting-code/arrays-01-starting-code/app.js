@@ -107,5 +107,37 @@ const taxAdjustedPrices = prices.map((price, index, prices) => {
   return priceObj;
 });
 
-console.log(prices, taxAdjustedPrices);
+// console.log(prices, taxAdjustedPrices);
 
+const sortedPrices = prices.sort((a, b) => {
+  if (a > b) {
+    return 1;
+  } else if (a === b) {
+    return 0;
+  } else {
+    return -1;
+  }
+});
+console.log(sortedPrices);
+
+const filteredArray = prices.filter(price => price > 6);
+
+console.log(filteredArray);
+
+// let sum = 0;
+
+// prices.forEach((price) => {
+//   sum += price
+// })
+
+// console.log(sum);
+
+const sum = prices.reduce ((prevValue, curValue) => prevValue + curValue, 0);
+
+console.log(sum);
+
+const sum = prices.reduce ((prevValue, curValue) => {
+  return prevValue + curValue;
+}, 0);
+
+console.log(sum);
