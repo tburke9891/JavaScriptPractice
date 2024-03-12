@@ -1,24 +1,52 @@
-const userChosenKeyName = "level";
+const addMovieBtn = document.getElementById("add-movie-btn");
+const searchBtn = document.getElementById("search-btn");
 
-let person = {
-	"first name": "Tommy",
-	age: 34,
-  hobbies: ["Sports", "Cooking"],
-  [userChosenKeyName]: '...',
-	greet: function () {
-		alert("Hi there!");
-	},
-	1.5: "hello",
+const movies = [];
+
+const renderMovies = () => {
+	const movieList = document.getElementById("movie-list");
+	if (movies.length === 0) {
+		movieList.classList.remove("visible");
+	} else {
+		movieList.classList.add("visible");
+	}
+	movieList.innerHTML = ""; // blank out the entire movie list
+
+	movies.forEach((movie) => {
+    const movieEl = document.createElement("li");
+    let text = movie.info.title + ' - ';
+    for (const key in movie.info) {
+      if (key !== 'title') {
+        text = text + `${key}: ${movie.info[key]}`;
+      }
+    }
+		movieEl.textContent = movie.info.title; //chaining property requests
+		movieList.append(movieEl);
+	});
 };
 
-// add a property to the object
-person.isAdmin = true;
-// delete a property from the person object
-delete person.age;
+const addMovieHandler = () => {
+	const title = document.getElementById("title").value;
+	const extraName = document.getElementById("extra-name").value;
+	const extraValue = document.getElementById("extra-value").value;
 
-const keyName = "first name";
+	if (
+		title.trim() === "" ||
+		extraName.trim() === "" ||
+		extraValue.trim() === ""
+	) {
+		return;
+	}
 
-console.log(person[keyName]);
-console.log(person[1.5]);
-console.log(person);
-console.log(person['level'])
+	const newMovie = {
+		info: {
+			title: title, // if key and value are the same you can simply enter title
+			[extraName]: extraValue,
+		},
+		id: Math.random(),
+	};
+	movies.push(newMovie);
+	renderMovies();
+};
+
+addMovieBtn.addEventListener("click", addMovieHandler);
