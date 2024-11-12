@@ -48,9 +48,28 @@ div.addEventListener("click", (event) => {
 	console.log(event);
 });
 
-button.addEventListener("click", (event) => {
+button.addEventListener("click", function (event) {
 	event.stopPropagation(); //stops CLICKED DIV from loading into the console
 	//	event.stopImmediatePropagation(); // stops other event listeners on the same button
 	console.log("CLICKED BUTTON");
 	console.log(event);
+	console.log(this); //ignored when called form an arrow function or the button when used with a named function
+});
+
+const listItems = document.querySelectorAll("li");
+const list = document.querySelector("ul");
+
+// listItems.forEach((listItem) => {
+// 	listItem.addEventListener("click", (event) => {
+// 		event.target.classList.toggle("highlight");
+// 	});
+// });
+
+list.addEventListener("click", function (event) {
+	// console.log(event.currentTarget); // specific DOM element where the listener is registered <ul>
+	// event.target.classList.toggle("highlight"); // actual DOM element
+	event.target.closest("li").classList.toggle("highlight"); // traverses up in the ancestor tree or the item itself
+	// form.submit(); //bypasses custom behavior when called like this, best would be to call the button.click on the form itself
+	button.click();
+	console.log(this); //looks at <ul>
 });
