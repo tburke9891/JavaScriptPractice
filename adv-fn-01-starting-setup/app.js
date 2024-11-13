@@ -70,4 +70,71 @@ userName = "Tommy";
 
 greetUser(); // Hi, Tommy.
 
+// function powerOf(x, n) { // iteration 1
+// 	let result = 1;
+// 	for (let i = 0; i < n; i++) {
+// 		result *= x;
+// 	}
+// 	return result;
+// }
 
+function powerOf(x, n) {
+	// if (n === 1) { // iteration 2
+	// 	return x;
+	// }
+	// return x * powerOf(x, n - 1);
+
+	return n === 1 ? x : x * powerOf(x, n - 1); // iteration 3
+}
+
+console.log(powerOf(2, 3)); // 2*2*2
+
+const myself = {
+	name: "Thomas",
+	friends: [
+		{
+			name: "Chris", // my friend
+			friends: [
+				{
+					name: "Julia", // Chris' friend
+				},
+				{
+					name: "Amy", // Chris' friend
+				},
+				{
+					name: "Ben", // Chris' friend
+				},
+			],
+		},
+		{
+			name: "Moses", // my friend
+		},
+	],
+};
+
+// function getFriendNames(person) {
+// 	const collectedNames = [];
+
+// 	for (const friend of person.friends) {
+// 		collectedNames.push(friend.name);
+// 	}
+// 	return collectedNames;
+// }
+
+// console.log(getFriendNames(myself)); //Chris and Moses
+
+function getFriendNames(person) {
+	const collectedNames = [];
+
+	if (!person.friends) {
+		return [];
+	}
+
+	for (const friend of person.friends) {
+		collectedNames.push(friend.name);
+		collectedNames.push(...getFriendNames(friend)); //spread operator to avoid nested arrays
+	}
+	return collectedNames;
+}
+
+console.log(getFriendNames(myself)); //Chris and Moses
