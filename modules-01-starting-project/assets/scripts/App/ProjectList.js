@@ -1,5 +1,5 @@
 import { ProjectItem } from "./ProjectItem.js";
-import { DOMHelper } from "../Utility/DOMhelper.js";
+import * as DOMHelp from "../Utility/DOMhelper.js"; //alternative to bundle exports
 
 export class ProjectList {
 	projects = [];
@@ -58,7 +58,7 @@ export class ProjectList {
 
 	addProject(project) {
 		this.projects.push(project);
-		DOMHelper.moveElement(project.id, `#${this.type}-projects ul`);
+		DOMHelp.moveElement(project.id, `#${this.type}-projects ul`); //removed DOMHelper and impored moveElement
 		project.update(this.switchProject.bind(this), this.type);
 	}
 
