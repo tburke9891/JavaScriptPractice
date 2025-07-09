@@ -1,0 +1,17 @@
+{
+  "name": "modules-01-starting-project",
+  "version": "1.0.0",
+  "description": "JavaScript - Learning",
+  "license": "ISC",
+  "author": "Thomas Burke",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.30.1",
+    "eslint": "^9.30.1",
+    "globals": "^16.3.0"
+  }
+}
